@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baruchi Medical Centre | Quality Healthcare</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & ROOT SETTINGS --- */
+        :root {
+            --primary: #0077b6;
+            --primary-dark: #023e8a;
+            --secondary: #00b4d8;
+            --accent: #48cae4;
+            --bg-light: #f8f9fa;
+            --surface: #ffffff;
+            --text-main: #2b2d42;
+            --text-muted: #6c757d;
+            --border: #e9ecef;
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            font-size: 1.05rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(2, 62, 138, 0.3);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1da851;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--surface);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Nav Toggle */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #e0f7fa 0%, #e1f5fe 100%);
+            padding: 100px 0 80px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .hero-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(0, 119, 182, 0.1);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--surface);
+            padding: 35px 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 180, 216, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--primary-dark);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- ABOUT US SECTION --- */
+        .about {
+            background-color: var(--surface);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .about-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .check-icon {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* --- CONTACT & APPOINTMENT SECTION --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .appointment-form {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-card {
+            background: var(--surface);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .info-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .info-card p, .info-card a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 60px 0 20px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-col p {
+            color: #d8e2dc;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #d8e2dc;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .emergency-notice {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin-top: 15px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d8e2dc;
+            font-size: 0.85rem;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .hero-container, .about-grid, .contact-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">+</div>
+                    Baruchi Medical Centre
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge">Dedicated Healthcare</span>
+                <h1>Quality Healthcare for You and Your Family</h1>
+                <p>Welcome to Baruchi Medical Centre. We provide compassionate, comprehensive, and accessible medical services tailored to the needs of our local community.</p>
+                <div>
+                    <a href="#contact" class="btn">Book Appointment</a>
+                    <a href="https://wa.me/256784847068" target="_blank" class="btn btn-whatsapp">WhatsApp Us</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <h3>Working Hours</h3>
+                <p style="margin-top: 10px; color: var(--text-muted);">We are open to serve you through out the week.</p>
+                <hr style="margin: 15px 0; border: none; border-top: 1px solid var(--border);">
+                <p><strong>Monday – Saturday:</strong> 8:00 AM – 7:00 PM</p>
+                <p style="margin-top: 8px;"><strong>Sunday:</strong> Emergency / On-call</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Core Services</h2>
+            <p class="section-subtitle">We offer a wide range of outpatient and clinical services designed to keep you and your family healthy.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3>General Consultation</h3>
+                    <p>Routine check-ups, primary care consultations, and individual treatment plans tailored by experienced clinical officers.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3>Diagnostics & Lab Tests</h3>
+                    <p>On-site clinical laboratory testing for accurate, fast diagnostic analysis and medical monitoring.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Preventative Care</h3>
+                    <p>Immunizations, health screenings, wellness checkups, and disease prevention education for all ages.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <h3>Outpatient Care</h3>
+                    <p>Comprehensive outpatient treatments, minor procedures, wound management, and basic emergency care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <span class="badge">About Baruchi Medical Centre</span>
+                    <h2 style="font-size: 2rem; color: var(--primary-dark); margin-bottom: 15px;">Your Trusted Local Health Partner</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 15px;">
+                        Located in Nsaggu, Butegga off Nakawuka-Kampala Road, Baruchi Medical Centre is dedicated to providing patient-centered care. We believe high-quality healthcare should be accessible, affordable, and empathetic.
+                    </p>
+                    <p style="color: var(--text-muted);">
+                        Our staff works endlessly to offer high clinical standards and individual attention to every patient walking through our doors.
+                    </p>
+                    <ul class="about-features">
+                        <li><span class="check-icon">✓</span> Qualified & Caring Medical Personnel</li>
+                        <li><span class="check-icon">✓</span> Modern Laboratory & Diagnostic Equipment</li>
+                        <li><span class="check-icon">✓</span> Deeply Committed to Community Health</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-light); padding: 40px; border-radius: var(--radius); border: 1px solid var(--border);">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 15px;">Why Choose Us?</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">We continuously strive to set a benchmark in patient safety, reliable diagnosis, and effective treatments.</p>
+                    <div style="display: flex; gap: 20px;">
+                        <div>
+                            <h2 style="color: var(--primary); font-size: 2rem;">100%</h2>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Dedicated Care</p>
+                        </div>
+                        <div>
+                            <h2 style="color: var(--primary); font-size: 2rem;">Local</h2>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Community Focus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & APPOINTMENT SECTION -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Book an Appointment</h2>
+            <p class="section-subtitle">Get in touch with us to schedule your visit or inquire about our medical services.</p>
+            
+            <div class="contact-grid">
+                <!-- Appointment Form -->
+                <div class="appointment-form">
+                    <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" placeholder="e.g. John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="e.g. +256 700 000000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department / Service</label>
+                            <select id="department" class="form-control" required>
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="General Consultation">General Consultation</option>
+                                <option value="Diagnostics / Lab Tests">Diagnostics / Lab Tests</option>
+                                <option value="Preventative Care">Preventative Care</option>
+                                <option value="Outpatient Care">Outpatient Care</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Notes / Symptoms (Optional)</label>
+                            <textarea id="notes" class="form-control" rows="3" placeholder="Briefly describe your request..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h4>📍 Location</h4>
+                        <p>Nsaggu, Butegga<br>Off Nakawuka-Kampala Road, Uganda</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h4>📞 Phone & WhatsApp</h4>
+                        <p><strong>Call:</strong> <a href="tel:+256771739404">+256 771 739 404</a></p>
+                        <p><strong>WhatsApp:</strong> <a href="https://wa.me/256784847068" target="_blank">+256 784 847 068</a></p>
+                    </div>
+
+                    <div class="info-card">
+                        <h4>⏰ Opening Hours</h4>
+                        <p>Monday – Saturday: 8:00 AM – 7:00 PM</p>
+                        <p>Sunday: Closed (Emergency Services Available)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Baruchi Medical Centre</h4>
+                    <p>Providing trusted healthcare, diagnostic, and clinical solutions to our local community.</p>
+                    <div class="emergency-notice">
+                        <strong>Medical Emergency?</strong> Please call our primary contact line directly at <a href="tel:+256771739404" style="color: var(--accent); text-decoration: underline;">+256 771 739 404</a>.
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Book Appointment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Location</h4>
+                    <p>Nsaggu, Butegga</p>
+                    <p>Off Nakawuka-Kampala Road</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> Baruchi Medical Centre. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INLINE JAVASCRIPT -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile nav when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form Submission Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('department').value;
+            const date = document.getElementById('date').value;
+
+            alert(`Thank you, ${name}! Your appointment request for ${service} on${date} has been sent. We will contact you at ${phone} to confirm.`);
+            
+            document.getElementById('bookingForm').reset();
+        }
+    </script>
+</body>
+</html>
