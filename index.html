@@ -463,12 +463,13 @@
     <header style="position: relative; padding: 20px 15px; background-color: #f0f7f4; text-align: center; border-bottom: 2px solid #006837; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
     <!-- 3-Dot Toggle Button -->
     <div style="position: absolute; top: 18px; right: 20px; z-index: 1000;">
-        <button onclick="toggleMenu()" style="background: none; border: none; font-size: 24px; color: #006837; cursor: pointer; padding: 5px; line-height: 1;">&#8413;&#8942;</button>
+        <button onclick="toggleMenu(event)" style="background: none; border: none; font-size: 24px; color: #006837; cursor: pointer; padding: 5px; line-height: 1;">&#8413;&#8942;</button>
         <!-- Dropdown Menu -->
-        <div id="dropdownMenu" style="display: none; position: absolute; right: 0; top: 35px; background-color: #ffffff; min-width: 140px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 6px; border: 1px solid #e0e0e0; text-align: left; overflow: hidden;">
+        <div id="dropdownMenu" style="display: none; position: absolute; right: 0; top: 35px; background-color: #ffffff; min-width: 160px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 6px; border: 1px solid #e0e0e0; text-align: left; overflow: hidden; z-index: 1001;">
             <a href="#services" onclick="toggleMenu()" style="display: block; padding: 10px 16px; color: #006837; text-decoration: none; font-weight: bold; font-size: 0.9rem; border-bottom: 1px solid #f0f0f0;">Services</a>
             <a href="#about" onclick="toggleMenu()" style="display: block; padding: 10px 16px; color: #006837; text-decoration: none; font-weight: bold; font-size: 0.9rem; border-bottom: 1px solid #f0f0f0;">About</a>
-            <a href="#contact" onclick="toggleMenu()" style="display: block; padding: 10px 16px; color: #006837; text-decoration: none; font-weight: bold; font-size: 0.9rem;">Contact</a>
+            <a href="#contact" onclick="toggleMenu()" style="display: block; padding: 10px 16px; color: #006837; text-decoration: none; font-weight: bold; font-size: 0.9rem; border-bottom: 1px solid #f0f0f0;">Contact</a>
+            <a href="javascript:void(0);" onclick="openDonateModal()" style="display: block; padding: 10px 16px; color: #006837; text-decoration: none; font-weight: bold; font-size: 0.9rem; background-color: #e8f5e9;">Donate ❤️</a>
         </div>
     </div>
 
@@ -479,22 +480,46 @@
         <p style="margin: 4px 0 0 0; font-size: 0.95rem; font-style: italic; color: #0f4c81; font-weight: 600;">Your Health, Our Priority</p>
     </div>
 
+    <!-- Donate Modal -->
+    <div id="donateModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="background-color: #ffffff; padding: 25px; border-radius: 12px; width: 90%; max-width: 380px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative;">
+            <span onclick="closeDonateModal()" style="position: absolute; top: 10px; right: 15px; font-size: 24px; font-weight: bold; cursor: pointer; color: #888;">&times;</span>
+            <h2 style="color: #006837 !important; margin-top: 0; font-size: 1.3rem;">Support Baruchi Medical Centre</h2>
+            <p style="font-size: 0.88rem; color: #555; margin-bottom: 20px;">Your contributions support local healthcare delivery and medical outreach programs.</p>
+            
+            <div style="text-align: left; background-color: #f9f9f9; padding: 12px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #ffcc00;">
+                <strong style="color: #333; display: block; margin-bottom: 4px;">🟡 MTN Mobile Money</strong>
+                <span style="font-size: 0.95rem; font-weight: bold; color: #006837;">Merchant Code / Number: [Insert Number]</span><br>
+                <span style="font-size: 0.8rem; color: #666;">Name: Baruchi Medical Centre</span>
+            </div>
+
+            <div style="text-align: left; background-color: #f9f9f9; padding: 12px; border-radius: 8px; border-left: 4px solid #ff0000;">
+                <strong style="color: #333; display: block; margin-bottom: 4px;">🔴 Airtel Money</strong>
+                <span style="font-size: 0.95rem; font-weight: bold; color: #006837;">Merchant Code / Number: [Insert Number]</span><br>
+                <span style="font-size: 0.8rem; color: #666;">Name: Baruchi Medical Centre</span>
+            </div>
+            
+            <button onclick="closeDonateModal()" style="margin-top: 20px; background-color: #006837; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
     <script>
-        function toggleMenu() {
+        function toggleMenu(e) {
+            if (e) e.stopPropagation();
             var menu = document.getElementById("dropdownMenu");
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
-            } else {
-                menu.style.display = "block";
-            }
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
         }
-        // Close menu if clicking outside
+        function openDonateModal() {
+            document.getElementById("dropdownMenu").style.display = "none";
+            document.getElementById("donateModal").style.display = "flex";
+        }
+        function closeDonateModal() {
+            document.getElementById("donateModal").style.display = "none";
+        }
         window.onclick = function(event) {
-            if (!event.target.matches('button')) {
-                var dropdown = document.getElementById("dropdownMenu");
-                if (dropdown && dropdown.style.display === "block") {
-                    dropdown.style.display = "none";
-                }
+            var dropdown = document.getElementById("dropdownMenu");
+            if (dropdown && dropdown.style.display === "block") {
+                dropdown.style.display = "none";
             }
         }
     </script>
